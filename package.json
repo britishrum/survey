@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sashafaz/survey#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mustache": "^2.2.1"
   }
 }
