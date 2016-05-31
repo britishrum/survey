@@ -1,6 +1,10 @@
 var express = require('express');
 var app = express();
 
+var databaseUrl = "surveyDb";
+var collections = ["questions", "answers", "users"];
+var mongo = require("mongojs")(databaseUrl, collections);
+
 app.use('/static', express.static(__dirname + '/client'));
 
 app.get('/survey', function(req, res) {
