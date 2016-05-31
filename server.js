@@ -11,7 +11,7 @@ app.get('/survey', function(req, res) {
 });
 
 app.get('/questions', function(req, res) {
-	res.json(questions.foo());
+	res.json(questions.getQuestions());
 });
 
 app.post('/submit', function(req, res){
