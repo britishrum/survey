@@ -15,7 +15,9 @@ app.get('/questions', function(req, res) {
 });
 
 app.post('/submit', function(req, res){
-	res.sendFile(__dirname + '/client/survey.html');
+	req.param("answers");
+	console.log(answers);
+	res.json({"status":"success"});
 });
 
 
