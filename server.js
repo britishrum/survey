@@ -2,12 +2,21 @@ var express = require('express');
 var questions = require('./questions.js');
 var app = express();
 
+var databaseUrl = "surveyDb";
+var collections = ["questions", "answers", "users"];
+var mongo = require("mongojs")(databaseUrl, collections);
+
 app.use('/static', express.static(__dirname + '/client'));
 
 
 //survey
 app.get('/survey', function(req, res) {
-	res.sendFile(__dirname + '/client/survey.html');
+	if (req.param('lang') == 'ru'){
+		res.sendFile(__dirname + '/client/surveyru.html');
+	}
+	else {
+		res.sendFile(__dirname + '/client/survey.html');
+	}	
 });
 
 app.get('/questions', function(req, res) {
