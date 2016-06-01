@@ -11,7 +11,13 @@ app.use('/static', express.static(__dirname + '/client'));
 
 //survey
 app.get('/survey', function(req, res) {
-	res.sendFile(__dirname + '/client/survey.html');
+	console.log('hello');
+	if (req.param(lang) == 'ru'){
+		res.sendFile(__dirname + '/client/surveyru.html');
+	}
+	else {
+		res.sendFile(__dirname + '/client/survey.html');
+	}	
 });
 
 app.get('/questions', function(req, res) {
