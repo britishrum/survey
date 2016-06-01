@@ -87,6 +87,7 @@ function processMultiple(question){
 
 $(document).ready(function() {
 	$('.submit').click(submit);
+	getQuestions();
 });
 
 
