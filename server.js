@@ -16,7 +16,7 @@ app.get('/survey', function(req, res) {
 	}
 	else {
 		res.sendFile(__dirname + '/client/survey.html');
-	}	
+	}
 });
 
 app.get('/questions', function(req, res) {
@@ -24,8 +24,7 @@ app.get('/questions', function(req, res) {
 });
 
 app.post('/submit', function(req, res){
-	req.param("answers");
-	console.log(answers);
+	console.log(req.param.answers);
 	res.json({"status":"success"});
 });
 
@@ -38,4 +37,3 @@ app.use('/', function(req, res) {
 app.listen(81, function() {
     console.log('Survey app listening on port 81');
 });
-

@@ -65,7 +65,7 @@ function submit(){
 		}
 		answersObj.push(result);
 	}
-	$.post("/submit", JSON.stringify({answers: answersObj}), function () {
+	$.post("/submit", {answers: answersObj}, function () {
 		//location.reload()
 	})
 }
@@ -90,7 +90,7 @@ $(document).ready(function() {
 });
 
 
-var multiSelectTemplate = 
+var multiSelectTemplate =
 		"<div class='question'>\
 			<input type='hidden' class='id-hidden' value='{{id}}'>\
 			<input type='hidden' class='type-hidden' value='{{type}}'>\
@@ -102,7 +102,7 @@ var multiSelectTemplate =
 			{{/answers}}\
 		</div>";
 
-var freeTextTemplate = 
+var freeTextTemplate =
 		"<div class='question'>\
 			<input type='hidden' class='id-hidden' value='{{id}}'>\
 			<input type='hidden' class='type-hidden' value='{{type}}'>\
@@ -110,7 +110,7 @@ var freeTextTemplate =
 			<textarea />\
 		</div>";
 
-var selectFromRangeTemplate = 
+var selectFromRangeTemplate =
 		"<div class='question'>\
 			<input type='hidden' class='id-hidden' value='{{id}}'>\
 			<input type='hidden' class='type-hidden' value='{{type}}'>\
