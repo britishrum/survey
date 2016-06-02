@@ -6,17 +6,32 @@ var collections = ["questions", "answers", "users"];
 var mongo = require("mongojs")(databaseUrl, collections);
 
 var passport = require('passport');
-var basicStrategy = require('passport-http');
+var BasicStrategy = require('passport-http').BasicStrategy;
 
-console.log(basicStrategy);
+require('./db.js')(mongo);
+
+passport.use(new BasicStrategy(function(userid, password, done) {
+    mongo.users.find({
+        name: userid,
+        password: password
+    }, function(err, users) {
+        if (err) { return done(err); }
+        if (!users.length) { return done(null, false); }
+        return done(null, users[0]);
+    });
+}));
 
 app.use('/static', express.static(__dirname + '/client'));
 
+app.get('/reports',
+    passport.authenticate('basic', {session: false}),
+    function(req, res) {
+            res.json(req.user);
+            // return reports page here
+    }
+);
+
 app.get('/survey', function(req, res) {
-
-});
-
-app.get('/login', function(req, res, next) {
 
 });
 
