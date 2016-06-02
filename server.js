@@ -1,16 +1,15 @@
 var express = require('express');
-var questions = require('./questions.js');
 var app = express();
 
 var databaseUrl = "surveyDb";
 var collections = ["questions", "answers", "users"];
 var mongo = require("mongojs")(databaseUrl, collections);
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
-})); 
+}));
 
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
@@ -27,6 +26,8 @@ passport.use(new BasicStrategy(function(userid, password, done) {
         return done(null, users[0]);
     });
 }));
+
+var questions = require('./questions.json');
 
 app.use('/static', express.static(__dirname + '/client'));
 
@@ -48,7 +49,7 @@ app.get('/survey', function(req, res) {
 });
 
 app.get('/questions', function(req, res) {
-	res.json(questions.getQuestions());
+	res.json(questions);
 });
 
 app.post('/submit', function(req, res){
