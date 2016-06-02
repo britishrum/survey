@@ -5,6 +5,12 @@ var app = express();
 var databaseUrl = "surveyDb";
 var collections = ["questions", "answers", "users"];
 var mongo = require("mongojs")(databaseUrl, collections);
+var bodyParser = require('body-parser')
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 app.use('/static', express.static(__dirname + '/client'));
 
@@ -24,7 +30,7 @@ app.get('/questions', function(req, res) {
 });
 
 app.post('/submit', function(req, res){
-	console.log(req.param.answers);
+	mongo.answers.insert(req.body.answers);
 	res.json({"status":"success"});
 });
 

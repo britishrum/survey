@@ -48,7 +48,7 @@ function submit(){
 	for (var i = 0; i < questions.length; i++) {
 		var result = getResultStub();
 		var element = questions.eq(i);
-		result.id = element.find('.id-hidden').val();
+		result.id = parseInt(element.find('.id-hidden').val());
 		result.type = element.find('.type-hidden').val();
 		switch(result.type){
 			case "multiple":
@@ -71,7 +71,7 @@ function submit(){
 }
 
 function getResultStub(){
-	return {answer:null, id:null, type: null};
+	return {answer:null, id:0, type: null};
 }
 
 function processMultiple(question){
