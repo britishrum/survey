@@ -27,8 +27,6 @@ passport.use(new BasicStrategy(function(userid, password, done) {
     });
 }));
 
-var questions = require('./questions.json');
-
 app.use('/static', express.static(__dirname + '/client'));
 
 app.get('/reports',
@@ -40,15 +38,16 @@ app.get('/reports',
 );
 
 app.get('/survey', function(req, res) {
-	if (req.param('lang') == 'ru'){
-		res.sendFile(__dirname + '/client/surveyru.html');
-	}
-	else {
-		res.sendFile(__dirname + '/client/survey.html');
-	}
+    res.sendFile(__dirname + '/client/html/survey.html');
 });
 
 app.get('/questions', function(req, res) {
+    var questions = {};
+    if (req.params.lang == 'ru') {
+        questions = require('./questions/ru.json');
+    } else {
+        questions = require('./questions/en.json');
+    }
 	res.json(questions);
 });
 
@@ -58,7 +57,7 @@ app.post('/submit', function(req, res){
 });
 
 app.use('/', function(req, res) {
-    res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '/client/html/survey.html');
 });
 
 app.listen(81, function() {

@@ -7,13 +7,11 @@
 </head>
 
 <body>
-	<div class="questions">
-
-	</div>
+	<div class="questions"></div>
 	<button class="submit" type="button">Submit</button>
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.js"></script>
-	<script type="text/javascript" src="static/scripts/mustache.js"></script>
+	<script type="text/javascript" src="static/scripts/lib/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="static/scripts/lib/mustache.js"></script>
 	<script type="text/javascript" src="static/scripts/survey.js"></script>
 
 	<script id="multipleTemplate" type="x-tmpl-mustache">
@@ -23,7 +21,7 @@
 			<p>{{question}}</p>
 			{{#answers}}
 			<label>
-				<input type='radio' class='option' name='group2' value='{{.}}'> {{.}} \
+				<input type='checkbox' class='option' value='{{id}}'> {{text}}
 			</label>
 			</br>
 			{{/answers}}
@@ -37,17 +35,30 @@
 			<textarea />
 		</div>
 	</script>
-	<script id="rangeTemplate" type="x-tmpl-mustache">
+	<script id="radioTemplate" type="x-tmpl-mustache">
 		<div class='question'>
 			<input type='hidden' class='id-hidden' value='{{id}}'>
 			<input type='hidden' class='type-hidden' value='{{type}}'>
 			<p>{{question}}</p>
 			{{#answers}}
 			<label>
-				<input type='radio' class='option' name='group1' value='{{.}}'> {{.}} </label>
+				<input type='radio' class='option' name='radio{{id}}' value='{{id}}'> {{text}} </label>
 			</br>
 			{{/answers}}
 		</div>
 	</script>
+	<script id="rangeTemplate" type="x-tmpl-mustache">
+		<div class='question'>
+			<input type='hidden' class='id-hidden' value='{{id}}'>
+			<input type='hidden' class='type-hidden' value='{{type}}'>
+			<p>{{question}}</p>
+			<form>
+				<input type="range" min="{{min}}" max="{{max}}" step="1" id="question{{id}}Input"
+					oninput="question{{id}}Output.value = question{{id}}Input.value">
+				<output id="question{{id}}Output"></output>
+			</form>
+		</div>
+	</script>
 </body>
+
 </html>

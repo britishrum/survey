@@ -1,6 +1,3 @@
-var lang = "rus";
-
-
 function getQuestions() {
     $.get("/questions", renderQuestions);
 }
@@ -10,68 +7,46 @@ function renderQuestions(data) {
 		var parent = $('.questions');
         data.forEach(function(question) {
             var tmpl = "#" + question.type + "Template";
-            parent.append(Mustache.render($(tmpl).html(), getVM(question)));
+            parent.append(Mustache.render($(tmpl).html(), question));
         });
     }
 }
 
-function getVM(question) {
-    var view = question[lang];
-    view.id = question.id;
-    view.type = question.type;
-    return view;
-}
-
 function submit() {
-    var answersObj = [];
+    var answers = [];
     var questions = $('.question');
-    for (var i = 0; i < questions.length; i++) {
-        var result = getResultStub();
-        var element = questions.eq(i);
-        result.id = parseInt(element.find('.id-hidden').val());
-        result.type = element.find('.type-hidden').val();
+    questions.each(function(i, el){
+        var result = {
+            id: parseInt($(el).find('.id-hidden').val()),
+            type: $(el).find('.type-hidden').val()
+        };
         switch (result.type) {
+            case "radio":
+                result.answer = $(el).find('.option:checked').val();
+                break;
             case "multiple":
-                result.answer = element.find('input[name=group2]:checked.option').val();
+                result.answer = $(el).find('.option:checked').map(function(i, el){return $(el).val();});
                 break;
             case "free":
-                result.answer = element.find('textarea').val();
+                result.answer = $(el).find('textarea').val();
                 break;
             case "range":
-                result.answer = element.find('input[name=group1]:checked.option').val();
-                break
+                result.answer = $(el).find('input').val();
+                break;
             default:
                 break;
         }
-        answersObj.push(result);
-    }
+        answers.push(result);
+    });
+
     $.post("/submit", {
-        answers: answersObj
+        answers: answers
     }, function() {
         //location.reload()
     })
 }
 
-function getResultStub() {
-    return {
-        answer: null,
-        id: 0,
-        type: null
-    };
-}
-
-function processMultiple(question) {
-    var answer;
-    question.find('.option').each(function(i, el) {
-        if (el.prop("checked", true)) {
-            answer = el.val();
-            return false;
-        }
-    });
-    return answer;
-}
-
-$(document).ready(function() {
+$(function() {
     $('.submit').click(submit);
     getQuestions();
 });

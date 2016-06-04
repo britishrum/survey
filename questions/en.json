@@ -1,0 +1,28 @@
+[{
+    "id": 1,
+    "type": "multiple",
+    "question": "How often do you need to create a bill?",
+    "answers": [{
+        "id": 1,
+        "text": "One time per month"
+    }, {
+        "id": 2,
+        "text": "One time per week"
+    }, {
+        "id": 3,
+        "text": "One time per day"
+    }, {
+        "id": 4,
+        "text":  "More than one time per day"
+    }]
+}, {
+    "id": 2,
+    "type": "free",
+    "question": "Who is responsible for initial documentation in your company (First and Last names)?"
+}, {
+    "id": 3,
+    "type": "range",
+    "question": "How are satisfied with online accounting systems for needs of your company? (1 - in any cases I would prefer offline accounting systems, 10 - in any cases I would prefer online accounting systems)",
+    "min": 1,
+    "max": 10
+}]
