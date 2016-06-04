@@ -4,16 +4,17 @@
 	<title>
 		Survey page
 	</title>
+	<script type="text/javascript" src="static/scripts/lib/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="static/scripts/lib/mustache.js"></script>
+	<script type="text/javascript" src="static/scripts/common.js"></script>
+	<script type="text/javascript" src="static/scripts/survey.js"></script>
+
 </head>
 
 <body>
 	<div class="questions"></div>
 	<button class="submit" type="button">Submit</button>
-
-	<script type="text/javascript" src="static/scripts/lib/jquery-2.2.4.min.js"></script>
-	<script type="text/javascript" src="static/scripts/lib/mustache.js"></script>
-	<script type="text/javascript" src="static/scripts/survey.js"></script>
-
+	
 	<script id="multipleTemplate" type="x-tmpl-mustache">
 		<div class='question'>
 			<input type='hidden' class='id-hidden' value='{{id}}'>

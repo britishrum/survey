@@ -37,6 +37,15 @@ app.get('/reports',
     }
 );
 
+app.get('/answers',
+    passport.authenticate('basic', {session: false}),
+    function(req, res) {
+        mongo.answers.find(function(err, answers){
+            res.json(answers);
+        });
+    }
+);
+
 app.get('/survey', function(req, res) {
     res.sendFile(__dirname + '/client/html/survey.html');
 });
@@ -52,8 +61,10 @@ app.get('/questions', function(req, res) {
 });
 
 app.post('/submit', function(req, res){
-	mongo.answers.insert(req.body.answers);
-	res.json({"status":"success"});
+    console.log(1);
+	mongo.answers.insert(req.body.result);
+    console.log(2);
+    res.json({"status":"success"});
 });
 
 app.use('/', function(req, res) {

@@ -1,6 +1,7 @@
-function getQuestions() {
-    $.get("/questions", renderQuestions);
-}
+$(function() {
+    $('.submit').click(submit);
+    getQuestions().then(renderQuestions);
+});
 
 function renderQuestions(data) {
     if (data) {
@@ -25,7 +26,7 @@ function submit() {
                 result.answer = $(el).find('.option:checked').val();
                 break;
             case "multiple":
-                result.answer = $(el).find('.option:checked').map(function(i, el){return $(el).val();});
+                result.answer = $.map($(el).find('.option:checked'), function(el){return $(el).val();});
                 break;
             case "free":
                 result.answer = $(el).find('textarea').val();
@@ -40,13 +41,9 @@ function submit() {
     });
 
     $.post("/submit", {
-        answers: answers
+        result: {answers: answers}
     }, function() {
+        console.log(arguments);
         //location.reload()
     })
 }
-
-$(function() {
-    $('.submit').click(submit);
-    getQuestions();
-});

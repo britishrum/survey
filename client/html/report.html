@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <title>Report page</title>
+    <script type="text/javascript" src="static/scripts/lib/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="static/scripts/lib/mustache.js"></script>
+    <script type="text/javascript" src="static/scripts/common.js"></script>
+    <script type="text/javascript" src="static/scripts/survey.js"></script>
+
+</head>
+
+<body>
+    <div></div>
+
+    <script id="answersTemplate" type="x-tmpl-mustache">
+        <table>
+            <tr>
+                <td></td>
+                {{#questions}}
+                <td>{{question}}</td>
+                {{/questions}}
+            </tr>
+            {{#results}}
+            <tr>
+                {{#answers}}
+                <td>{{text}}<td>
+                {{/answers}}
+            </tr>
+            {{/results}}
+        </table>
+    </script>
+</body>
+
+</html>
