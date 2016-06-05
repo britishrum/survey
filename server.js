@@ -31,9 +31,8 @@ app.use('/static', express.static(__dirname + '/client'));
 
 app.get('/reports',
     passport.authenticate('basic', {session: false}),
-    function(req, res) {
-            res.json(req.user);
-            // return reports page here
+    function(req, res){
+        res.sendFile(__dirname + '/client/html/report.html');
     }
 );
 
