@@ -54,7 +54,7 @@ app.get('/questions', function(req, res) {
     if (req.params.lang == 'ru') {
         questions = require('./questions/ru.json');
     } else {
-        questions = require('./questions/en.json');
+        questions = require('./questions/eng.json');
     }
 	res.json(questions);
 });

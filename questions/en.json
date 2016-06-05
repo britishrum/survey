@@ -22,7 +22,33 @@
 }, {
     "id": 3,
     "type": "range",
-    "question": "How are satisfied with online accounting systems for needs of your company? (1 - in any cases I would prefer offline accounting systems, 10 - in any cases I would prefer online accounting systems)",
+    "question": "How are you satisfied with online accounting systems for needs of your company? (1 - in any cases I would prefer offline accounting systems, 10 - in any cases I would prefer online accounting systems)",
     "min": 1,
     "max": 10
+},{
+    "id": 4,
+    "type": "range",
+    "question": "How much accountants do you have in your company?",
+    "min": 1,
+    "max": 10
+}, {
+	"id": 5,
+    "type": "multiple",
+    "question": "How often do you check the grades of your child?",
+    "answers": [{
+        "id": 1,
+        "text": "I don't care"
+    }, {
+        "id": 2,
+        "text": "I check only final grades at the end of the semester"
+    }, {
+        "id": 3,
+        "text": "One time per month"
+    }, {
+        "id": 4,
+        "text": "One time per week"
+    }, {
+        "id": 5,
+        "text": "More than one time per week"
+    }]
 }]
