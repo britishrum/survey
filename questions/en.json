@@ -1,24 +1,24 @@
 [{
     "id": 1,
     "type": "multiple",
-    "question": "How often do you need to create a bill?",
+    "question": "Who is responsible for initial documentation in your company?",
     "answers": [{
         "id": "1",
-        "text": "One time per month"
+        "text": "CEO"
     }, {
         "id": "2",
-        "text": "One time per week"
+        "text": "Accountants"
     }, {
         "id": "3",
-        "text": "One time per day"
+        "text": "Sales Managers"
     }, {
         "id": "4",
-        "text":  "More than one time per day"
+        "text":  "Lawyers"
     }]
 }, {
     "id": 2,
     "type": "free",
-    "question": "Who is responsible for initial documentation in your company (First and Last names)?"
+    "question": "Describe the consultations which you want to take using online accounting services? Don't hesitate to include confusing situations from your experience while using online accounting services."
 }, {
     "id": 3,
     "type": "range",
@@ -34,21 +34,27 @@
 }, {
 	"id": 5,
     "type": "multiple",
-    "question": "How often do you check the grades of your child?",
+    "question": "On which week days you have created the initial accounting documents for last three months?",
     "answers": [{
         "id": "1",
-        "text": "I don't care"
+        "text": "Monday"
     }, {
         "id": "2",
-        "text": "I check only final grades at the end of the semester"
+        "text": "Tuesday"
     }, {
         "id": "3",
-        "text": "One time per month"
+        "text": "Wednesday"
     }, {
         "id": "4",
-        "text": "One time per week"
+        "text": "Thursday"
     }, {
         "id": "5",
-        "text": "More than one time per week"
+        "text": "Friday"
+    }, {
+        "id": "6",
+        "text": "Saturday"
+    }, {
+        "id": "5",
+        "text": "Sunday"
     }]
 }]
