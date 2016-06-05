@@ -4,6 +4,7 @@
     <title>Report page</title>
     <script type="text/javascript" src="static/scripts/lib/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="static/scripts/lib/mustache.js"></script>
+    <script type="text/javascript" src="static/scripts/lib/charts.min.js"></script>
     <script type="text/javascript" src="static/scripts/common.js"></script>
     <script type="text/javascript" src="static/scripts/report.js"></script>
 
@@ -11,10 +12,12 @@
 
 <body>
     <select onchange="setLanguage(value)">
-	  <option value="en">English</option>
-	  <option value="ru">Русский</option>
-	</select>
-    <div id="answersDiv"></div>
+        <option value="en">English</option>
+        <option value="ru">Русский</option>
+    </select>
+    <div id="answersDiv">
+
+    </div>
 
     <script id="avgTemplate" type="x-tmpl-mustache">
         <table>
@@ -29,6 +32,11 @@
             </tr>
             {{/rangeQuestions}}
         </table>
+    </script>
+    <script id="chartTemplate" type="x-tmpl-mustache">
+        <div style="width:50%">
+            <canvas id="chart{{id}}" width="200" height="200" />
+        </div>
     </script>
     <script id="answersTemplate" type="x-tmpl-mustache">
         <table>
