@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var env = process.env;
 
-var databaseUrl = "surveyDb";
+var databaseUrl = "admin:AeE7PhSbhem2@localhost/surveyapp";
 var collections = ["questions", "answers", "users"];
 var mongo = require("mongojs")(databaseUrl, collections);
 var bodyParser = require('body-parser');
