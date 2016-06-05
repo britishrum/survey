@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var env = process.env;
 
 var databaseUrl = "surveyDb";
 var collections = ["questions", "answers", "users"];
@@ -64,10 +65,14 @@ app.post('/submit', function(req, res){
     res.json({"status":"success"});
 });
 
+app.get('/health', function(req, res){
+    res.status(200).end();
+});
+
 app.use('/', function(req, res) {
     res.sendFile(__dirname + '/client/html/survey.html');
 });
 
-app.listen(80, function() {
-    console.log('Survey app listening on port 81');
+app.listen(env.NODE_PORT || 3000, function() {
+    console.log('Survey app listening on port 80');
 });
