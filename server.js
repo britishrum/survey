@@ -4,7 +4,7 @@ var env = process.env;
 
 var databaseUrl = "admin:AeE7PhSbhem2@localhost/surveyapp";
 var collections = ["questions", "answers", "users"];
-//var mongo = require("mongojs")(databaseUrl, collections);
+var mongo = require("mongojs")(databaseUrl, collections);
 var bodyParser = require('body-parser');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 
-/*require('./db.js')(mongo);
+require('./db.js')(mongo);
 
 passport.use(new BasicStrategy(function(userid, password, done) {
     mongo.users.find({
@@ -26,7 +26,7 @@ passport.use(new BasicStrategy(function(userid, password, done) {
         if (!users.length) { return done(null, false); }
         return done(null, users[0]);
     });
-}));*/
+}));
 
 app.use('/static', express.static(__dirname + '/client'));
 
