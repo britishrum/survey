@@ -6,8 +6,24 @@ $(function(){
             var questions = res[0];
             var answersRes = res[1];
             var answers = prepareAnswers(questions, answersRes);
+            var parent = $('#answersDiv');
+
+            var rangeQuestions = questions.filter(q => q.type == 'range');
+            rangeQuestions.forEach(q => {
+                var rangeAnswers = answers.map(a => {
+                    var questionAnswer = a.answers.filter(a => a.id == q.id)[0];
+                    return questionAnswer && questionAnswer.answer;
+                });
+                var avg = rangeAnswers.reduce((prev, next) => prev + next, 0) / rangeAnswers.length;
+                q.avg = Math.round(avg * 100) / 100;
+            });
+            var avgTmpl = $("#avgTemplate").html();
+            parent.append(Mustache.render(avgTmpl, {
+                rangeQuestions: rangeQuestions,
+            }));
+
             var tmpl = $("#answersTemplate").html();
-            $('#answersDiv').append(Mustache.render(tmpl, {
+            parent.append(Mustache.render(tmpl, {
                 questions: questions,
                 results: answers
             }));
@@ -26,6 +42,7 @@ function prepareAnswers(questions, answersEntries) {
                     .map(a => a.text)
                     .join('\n');
             } else if (answer.type == 'range') {
+                answer.answer = parseInt(answer.answer);
                 answer.text = answer.answer;
             } else if (answer.type == 'radio') {
                 answer.text = answer.question.answers

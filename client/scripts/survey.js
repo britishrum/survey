@@ -35,7 +35,6 @@ function submit() {
         $.post("/submit", {
             result: {answers: answers}
         }, function() {
-            console.log(arguments);
             location.reload()
         });
     }
@@ -49,6 +48,6 @@ function getAnswer(type, el) {
     } else if (type == "free") {
         return $(el).find('textarea').val();
     } else if (type == "range") {
-        return $(el).find('input').val();
+        return $(el).find('input[type="range"]').val();
     }
 }

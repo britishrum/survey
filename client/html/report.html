@@ -16,6 +16,20 @@
 	</select>
     <div id="answersDiv"></div>
 
+    <script id="avgTemplate" type="x-tmpl-mustache">
+        <table>
+            <tr>
+                <td></td>
+                <td>Avg</td>
+            </tr>
+            {{#rangeQuestions}}
+            <tr>
+                <td>{{question}}</td>
+                <td>{{avg}}</td>
+            </tr>
+            {{/rangeQuestions}}
+        </table>
+    </script>
     <script id="answersTemplate" type="x-tmpl-mustache">
         <table>
             <tr>
