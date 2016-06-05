@@ -1,5 +1,5 @@
 module.exports = function(mongo) {
-    [{name: 'alan', password: 'qwerty'}].forEach(function(user){
+    [{name: 'admin', password: 'AeE7PhSbhem2'}].forEach(function(user){
         mongo.users.find(user,function(err, users){
             if (!users.length) {
                 mongo.users.insert(user);
