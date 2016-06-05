@@ -22,7 +22,7 @@ function prepareAnswers(questions, answersEntries) {
                 answer.text = answer.answer;
             } else if (answer.type == 'multiple') {
                 answer.text = answer.question.answers
-                    .filter(a => answer.answer.indexOf(a.id) >= 0)
+                    .filter(a => answer.answer && answer.answer.indexOf(a.id) >= 0)
                     .map(a => a.text)
                     .join('\n');
             } else if (answer.type == 'range') {
