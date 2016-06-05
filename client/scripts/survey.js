@@ -1,6 +1,6 @@
 $(function() {
     $('.submit').click(submit);
-	getQuestions('ru').then(renderQuestions); //add the parameter of the language
+	getQuestions().then(renderQuestions); //add the parameter of the language
 });
 
 function renderQuestions(data) {
@@ -18,7 +18,7 @@ function submit() {
     var questions = $('.question');
     questions.each(function(i, el){
         var result = {
-            id: parseInt($(el).find('.id-hidden').val()),
+            id: $(el).find('.id-hidden').val(),
             type: $(el).find('.type-hidden').val()
         };
         switch (result.type) {

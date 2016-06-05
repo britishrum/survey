@@ -51,8 +51,7 @@ app.get('/survey', function(req, res) {
 
 app.get('/questions', function(req, res) {
     var questions = {};
-    if (req.params.lang == 'ru') {
-		console.log(lang);
+    if (req.query.lang == 'ru') {
         questions = require('./questions/ru.json');
     } else {
         questions = require('./questions/en.json');

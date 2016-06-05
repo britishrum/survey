@@ -1,9 +1,13 @@
-function getQuestions(lang) {
-    console.log(lang);
-	if (lang == 'ru'){
-		console.log(lang);
-		return Promise.resolve($.get("/questions?lang=ru"));
-	} else {
-		return Promise.resolve($.get("/questions?lang=en"));
-	}
+$(function() {
+    $('select').val(localStorage.getItem('lang'));
+});
+
+function getQuestions() {
+    var lang = localStorage.getItem('lang') || 'en';
+	return Promise.resolve($.get("/questions?lang=" + lang));
+}
+
+function setLanguage(lang) {
+    localStorage.setItem('lang', lang);
+    location.reload();
 }

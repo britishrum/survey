@@ -12,22 +12,14 @@
 </head>
 
 <body>
-	<div>
-		Выберите язык:
-	</div>
-	<a href="/survey?lang=ru">
-		<div>
-			Русский
-		</div>
-	</a>
-	<a href="/survey?lang=eng">
-		<div>
-			English
-		</div>
-	</a>
+	<select onchange="setLanguage(value)">
+	  <option value="en">English</option>
+	  <option value="ru">Русский</option>
+	</select>
+
 	<div class="questions"></div>
 	<button class="submit" type="button">Submit</button>
-	
+
 	<script id="multipleTemplate" type="x-tmpl-mustache">
 		<div class='question'>
 			<input type='hidden' class='id-hidden' value='{{id}}'>

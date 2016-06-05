@@ -10,20 +10,23 @@
 </head>
 
 <body>
-    <div></div>
+    <select onchange="setLanguage(value)">
+	  <option value="en">English</option>
+	  <option value="ru">Русский</option>
+	</select>
+    <div id="answersDiv"></div>
 
     <script id="answersTemplate" type="x-tmpl-mustache">
         <table>
             <tr>
-                <td></td>
                 {{#questions}}
-                <td>{{question}}</td>
+                <th>{{question}}</th>
                 {{/questions}}
             </tr>
             {{#results}}
             <tr>
                 {{#answers}}
-                <td>{{text}}<td>
+                <td>{{text}}</td>
                 {{/answers}}
             </tr>
             {{/results}}

@@ -3,16 +3,16 @@
     "type": "multiple",
     "question": "How often do you need to create a bill?",
     "answers": [{
-        "id": 1,
+        "id": "1",
         "text": "One time per month"
     }, {
-        "id": 2,
+        "id": "2",
         "text": "One time per week"
     }, {
-        "id": 3,
+        "id": "3",
         "text": "One time per day"
     }, {
-        "id": 4,
+        "id": "4",
         "text":  "More than one time per day"
     }]
 }, {
@@ -36,19 +36,19 @@
     "type": "multiple",
     "question": "How often do you check the grades of your child?",
     "answers": [{
-        "id": 1,
+        "id": "1",
         "text": "I don't care"
     }, {
-        "id": 2,
+        "id": "2",
         "text": "I check only final grades at the end of the semester"
     }, {
-        "id": 3,
+        "id": "3",
         "text": "One time per month"
     }, {
-        "id": 4,
+        "id": "4",
         "text": "One time per week"
     }, {
-        "id": 5,
+        "id": "5",
         "text": "More than one time per week"
     }]
 }]
