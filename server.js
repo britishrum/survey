@@ -68,6 +68,6 @@ app.use('/', function(req, res) {
     res.sendFile(__dirname + '/client/html/survey.html');
 });
 
-app.listen(81, function() {
+app.listen(80, function() {
     console.log('Survey app listening on port 81');
 });
