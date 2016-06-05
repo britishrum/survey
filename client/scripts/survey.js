@@ -19,31 +19,36 @@ function submit() {
     questions.each(function(i, el){
         var result = {
             id: $(el).find('.id-hidden').val(),
-            type: $(el).find('.type-hidden').val()
+            type: $(el).find('.type-hidden').val(),
         };
-        switch (result.type) {
-            case "radio":
-                result.answer = $(el).find('.option:checked').val();
-                break;
-            case "multiple":
-                result.answer = $.map($(el).find('.option:checked'), function(el){return $(el).val();});
-                break;
-            case "free":
-                result.answer = $(el).find('textarea').val();
-                break;
-            case "range":
-                result.answer = $(el).find('input').val();
-                break;
-            default:
-                break;
-        }
+        result.answer = getAnswer(result.type, el);
         answers.push(result);
     });
 
-    $.post("/submit", {
-        result: {answers: answers}
-    }, function() {
-        console.log(arguments);
-        //location.reload()
-    })
+    var notAnswered = answers.filter(answerEntry => {
+        var answered = answerEntry.answer.length
+        var bgColor = answered ? "white" : "pink";
+        $("#question" + answerEntry.id).css("background-color", bgColor);
+        return !answered;
+    });
+    if (!notAnswered.length) {
+        $.post("/submit", {
+            result: {answers: answers}
+        }, function() {
+            console.log(arguments);
+            location.reload()
+        });
+    }
+}
+
+function getAnswer(type, el) {
+    if (type == "radio") {
+        return $(el).find('.option:checked').val();
+    } else if (type == "multiple") {
+        return $.map($(el).find('.option:checked'), el => $(el).val());
+    } else if (type == "free") {
+        return $(el).find('textarea').val();
+    } else if (type == "range") {
+        return $(el).find('input').val();
+    }
 }

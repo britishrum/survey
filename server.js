@@ -60,9 +60,7 @@ app.get('/questions', function(req, res) {
 });
 
 app.post('/submit', function(req, res){
-    console.log(1);
 	mongo.answers.insert(req.body.result);
-    console.log(2);
     res.json({"status":"success"});
 });
 
