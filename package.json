@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Cloud Computing  class assignment #2",
   "private": true,
-  "main": "start.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node --use_strict start.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

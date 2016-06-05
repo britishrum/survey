@@ -66,13 +66,13 @@ app.post('/submit', function(req, res){
 });
 
 app.get('/health', function(req, res){
-    res.status(200).end();
+    res.status(404).end();
 });
 
 app.use('/', function(req, res) {
     res.sendFile(__dirname + '/client/html/survey.html');
 });
 
-app.listen(env.NODE_PORT || 3000, function() {
+app.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function() {
     console.log('Survey app listening on port 80');
 });
