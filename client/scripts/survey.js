@@ -1,6 +1,6 @@
 $(function() {
     $('.submit').click(submit);
-    getQuestions().then(renderQuestions);
+	getQuestions('ru').then(renderQuestions); //add the parameter of the language
 });
 
 function renderQuestions(data) {
