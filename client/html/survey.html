@@ -8,62 +8,85 @@
 	<script type="text/javascript" src="static/scripts/lib/mustache.js"></script>
 	<script type="text/javascript" src="static/scripts/common.js"></script>
 	<script type="text/javascript" src="static/scripts/survey.js"></script>
-
+	<link rel="stylesheet" href="static/css/common.css" media="all">
+	<link rel="stylesheet" href="static/css/survey.css" media="all">
 </head>
 
 <body>
 	<select onchange="setLanguage(value)">
-	  <option value="en">English</option>
-	  <option value="ru">Русский</option>
+		<option value="en">English</option>
+		<option value="ru">Русский</option>
 	</select>
-
-	<div class="questions"></div>
-	<button class="submit" type="button">Submit</button>
+	<div class="content">
+		<table class="questions"></table>
+		<button class="submit" type="button">Submit</button>
+	</div>
 
 	<script id="multipleTemplate" type="x-tmpl-mustache">
-		<div class='question' id="question{{id}}">
-			<input type='hidden' class='id-hidden' value='{{id}}'>
-			<input type='hidden' class='type-hidden' value='{{type}}'>
-			<p>{{question}}</p>
-			{{#answers}}
-			<label>
-				<input type='checkbox' class='option' value='{{id}}'> {{text}}
-			</label>
-			</br>
-			{{/answers}}
-		</div>
+		<tr id="question{{id}}">
+			<td>{{number}}</td>
+			<td>
+				<div class='question'>
+					<input type='hidden' class='id-hidden' value='{{id}}'>
+					<input type='hidden' class='type-hidden' value='{{type}}'>
+					<p>{{question}}</p>
+					{{#answers}}
+					<label>
+						<input type='checkbox' class='option' value='{{id}}'> {{text}}
+					</label>
+					</br>
+					{{/answers}}
+				</div>
+			</td>
+		</tr>
 	</script>
 	<script id="freeTemplate" type="x-tmpl-mustache">
-		<div class='question' id="question{{id}}" >
-			<input type='hidden' class='id-hidden' value='{{id}}'>
-			<input type='hidden' class='type-hidden' value='{{type}}'>
-			<p>{{question}}</p>
-			<textarea spellcheck="true"/>
-		</div>
+		<tr id="question{{id}}">
+			<td>{{number}}</td>
+			<td>
+				<div class='question'>
+					<input type='hidden' class='id-hidden' value='{{id}}'>
+					<input type='hidden' class='type-hidden' value='{{type}}'>
+					<p>{{question}}</p>
+					<textarea spellcheck="true" />
+				</div>
+			</td>
+		</tr>
 	</script>
 	<script id="radioTemplate" type="x-tmpl-mustache">
-		<div class='question' id="question{{id}}">
-			<input type='hidden' class='id-hidden' value='{{id}}'>
-			<input type='hidden' class='type-hidden' value='{{type}}'>
-			<p>{{question}}</p>
-			{{#answers}}
-			<label>
-				<input type='radio' class='option' name='radio{{id}}' value='{{id}}'> {{text}} </label>
-			</br>
-			{{/answers}}
-		</div>
+		<tr id="question{{id}}">
+			<td>{{number}}</td>
+			<td>
+				<div class='question'>
+					<input type='hidden' class='id-hidden' value='{{id}}'>
+					<input type='hidden' class='type-hidden' value='{{type}}'>
+					<p>{{question}}</p>
+					<form action="">
+						{{#answers}}
+						<label>
+							<input type='radio' class='option' name='radio{{number}}' value='{{id}}'> {{text}} </label>
+						</br>
+						{{/answers}}
+					</form>
+				</div>
+			</td>
+		</tr>
 	</script>
 	<script id="rangeTemplate" type="x-tmpl-mustache">
-		<div class='question' id="question{{id}}">
-			<input type='hidden' class='id-hidden' value='{{id}}'>
-			<input type='hidden' class='type-hidden' value='{{type}}'>
-			<p>{{question}}</p>
-			<form>
-				<input type="range" min="{{min}}" max="{{max}}" step="1" id="question{{id}}Input"
-					oninput="question{{id}}Output.value = question{{id}}Input.value">
-				<output id="question{{id}}Output"></output>
-			</form>
-		</div>
+		<tr id="question{{id}}">
+			<td>{{number}}</td>
+			<td>
+				<div class='question'>
+					<input type='hidden' class='id-hidden' value='{{id}}'>
+					<input type='hidden' class='type-hidden' value='{{type}}'>
+					<p>{{question}}</p>
+					<form>
+						<input type="range" min="{{min}}" max="{{max}}" step="1" id="question{{id}}Input" oninput="question{{id}}Output.value = question{{id}}Input.value">
+						<output id="question{{id}}Output"></output>
+					</form>
+				</div>
+			</td>
+		</tr>
 	</script>
 </body>
 

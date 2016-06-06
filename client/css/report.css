@@ -1,0 +1,23 @@
+.content {
+    width: 800px;
+}
+
+#avg, #charts, #raw {
+    margin: 20px 0px;
+}
+
+#avg tr:first-child td:first-child {
+    border-left: none;
+    border-top: none;
+}
+
+.chart {
+    margin: 20px auto;
+    width: 80%;
+    padding: 30px;
+    border: rgba(0,0,0,0.5) solid 1px;
+}
+
+#raw th {
+    text-align: left;
+}

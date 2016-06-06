@@ -1,0 +1,12 @@
+.questions td:first-child {
+    vertical-align: top;
+    border-right: none;
+}
+
+.questions td:last-child {
+    border-left: none;
+}
+
+button.submit {
+    margin-top: 30px;
+}

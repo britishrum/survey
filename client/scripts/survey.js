@@ -1,12 +1,13 @@
 $(function() {
     $('.submit').click(submit);
-	getQuestions().then(renderQuestions); 
+	getQuestions().then(renderQuestions);
 });
 
 function renderQuestions(data) {
     if (data) {
 		var parent = $('.questions');
-        data.forEach(function(question) {
+        data.forEach(function(question, i) {
+            question.number = i + 1;
             var tmpl = "#" + question.type + "Template";
             parent.append(Mustache.render($(tmpl).html(), question));
         });
@@ -26,7 +27,7 @@ function submit() {
     });
 
     var notAnswered = answers.filter(answerEntry => {
-        var answered = answerEntry.answer.length
+        var answered = answerEntry.answer && answerEntry.answer.length
         var bgColor = answered ? "white" : "pink";
         $("#question" + answerEntry.id).css("background-color", bgColor);
         return !answered;
@@ -35,7 +36,8 @@ function submit() {
         $.post("/submit", {
             result: {answers: answers}
         }, function() {
-            location.reload()
+            window.alert("Submited successfully");
+            location.reload();
         });
     }
 }

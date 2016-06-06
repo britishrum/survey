@@ -7,7 +7,8 @@
     <script type="text/javascript" src="static/scripts/lib/charts.min.js"></script>
     <script type="text/javascript" src="static/scripts/common.js"></script>
     <script type="text/javascript" src="static/scripts/report.js"></script>
-
+    <link rel="stylesheet" href="static/css/common.css" media="all">
+    <link rel="stylesheet" href="static/css/report.css" media="all">
 </head>
 
 <body>
@@ -15,12 +16,17 @@
         <option value="en">English</option>
         <option value="ru">Русский</option>
     </select>
-    <div id="answersDiv">
-
+    <div class="content">
+        <div id="avg"></div>
+        <div id="charts"></div>
+        <div id="raw"></div>
     </div>
 
+    <script id="empty" type="x-tmpl-mustache">
+        No data yet.
+    </script>
     <script id="avgTemplate" type="x-tmpl-mustache">
-        <table>
+        <table class="avgTable">
             <tr>
                 <td></td>
                 <td>Avg</td>
@@ -34,19 +40,24 @@
         </table>
     </script>
     <script id="chartTemplate" type="x-tmpl-mustache">
-        <div style="width:50%">
-            <canvas id="chart{{id}}" width="200" height="200" />
+        <div class="chart">
+            {{question}}
+            <div>
+                <canvas id="chart{{id}}" width="200" height="200" />
+            </div>
         </div>
     </script>
     <script id="answersTemplate" type="x-tmpl-mustache">
         <table>
             <tr>
+                <th>#</th>
                 {{#questions}}
                 <th>{{question}}</th>
                 {{/questions}}
             </tr>
             {{#results}}
             <tr>
+                <td>{{number}}</td>
                 {{#answers}}
                 <td>{{text}}</td>
                 {{/answers}}

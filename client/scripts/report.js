@@ -19,18 +19,22 @@ $(function() {
             var questions = res[0];
             var answersRes = res[1];
             var answers = prepareAnswers(questions, answersRes);
-            var parent = $('#answersDiv');
+            if (!answers.length) {
+                var emptyTmpl = $("#empty").html();
+                $('.content').append(Mustache.render(emptyTmpl, {}));
+                return;
+            }
 
             var rangeQuestions = prepareRangeQuestions(questions, answers);
             var avgTmpl = $("#avgTemplate").html();
-            parent.append(Mustache.render(avgTmpl, {
+            $("#avg").append(Mustache.render(avgTmpl, {
                 rangeQuestions: rangeQuestions,
             }));
 
             var pieData = preparePieData(questions, answers);
             pieData.forEach(data => {
                 var chartTmpl = $("#chartTemplate").html();
-                parent.append(Mustache.render(chartTmpl, data));
+                $("#charts").append(Mustache.render(chartTmpl, data));
                 var ctx = document.getElementById("chart" + data.id).getContext("2d");
                 var chart = new Chart(ctx, {
                     type: 'pie',
@@ -42,9 +46,8 @@ $(function() {
                 });
             });
 
-
             var tmpl = $("#answersTemplate").html();
-            parent.append(Mustache.render(tmpl, {
+            $("#raw").append(Mustache.render(tmpl, {
                 questions: questions,
                 results: answers
             }));
@@ -52,7 +55,8 @@ $(function() {
 });
 
 function prepareAnswers(questions, answersEntries) {
-    answersEntries.forEach(function(answerEntry) {
+    answersEntries.forEach(function(answerEntry, i) {
+        answerEntry.number = i + 1;
         answerEntry.answers.forEach(function(answer) {
             answer.question = questions.find(q => q.id == answer.id);
             if (answer.type == 'free') {
@@ -89,14 +93,16 @@ function prepareRangeQuestions(questions, answers) {
 }
 
 function preparePieData(questions, answerEntries) {
-    var res = questions.filter(q => q.type == 'multiple');
+    var res = questions.filter(q => q.type == 'multiple' || q.type == 'radio');
     res.forEach(q => {
         q.labels = q.answers.map(a => a.text);
         q.datasets = [];
         var dataset = {};
-        var distribution = answerEntries.map(answerEntry =>
-            answerEntry.answers.filter(a => a.id == q.id)[0]
-        ).reduce((prev, next) => {
+        var distribution = answerEntries.map(answerEntry => {
+            let result = answerEntry.answers.filter(a => a.id == q.id)[0];
+            result.answer = Array.isArray(result.answer) ? result.answer : [result.answer];
+            return result;
+        }).reduce((prev, next) => {
             next.answer.forEach(nextAnswer => {
                 prev[nextAnswer] = prev[nextAnswer] || 0;
                 prev[nextAnswer]++;
